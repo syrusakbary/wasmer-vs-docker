@@ -13,7 +13,7 @@ docker:
 	time docker run -it --rm --name my-running-app my-php-app
 
 	# Analyze memory usage
-	./memusg.sh docker run -it --rm --name my-running-app my-php-app
+	../memusg.sh docker run -it --rm --name my-running-app my-php-app
 
 docker-alpine:
 	# Docker container size: 83.5MB
@@ -30,10 +30,10 @@ docker-alpine:
 	time docker run -it --rm --name my-running-app my-php-app-alpine
 
 	# Analyze memory usage
-	./memusg.sh docker run -it --rm --name my-running-app my-php-app-alpine
+	../memusg.sh docker run -it --rm --name my-running-app my-php-app-alpine
 
 wasmer:
-	# Wasmer package size:  1.68 MB
+	# Wasmer package size:  1.68 MB (from https://wapm.io/package/php)
 	# Running time: ~90ms
 	# Memory usage: 320
 
@@ -46,4 +46,4 @@ wasmer:
 	time wasmer run wapm_packages/_/php@0.1.1/php.wasm -- example.php "Hello World"
 
 	# Analyze memory usage
-	./memusg.sh wasmer run wapm_packages/_/php@0.1.1/php.wasm -- example.php "Hello World"
+	../memusg.sh wasmer run wapm_packages/_/php@0.1.1/php.wasm -- example.php "Hello World"
