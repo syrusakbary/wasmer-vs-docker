@@ -1,7 +1,7 @@
 docker:
 	# Docker container size: 1.72GB
-	# Running time: ~614ms
-	# Memory peak: 22960
+	# Running time: ~190ms
+	# Memory peak: 24676
 
 	# Prepare the container
 	docker build -t my-rust-app .
