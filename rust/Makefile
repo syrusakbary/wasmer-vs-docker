@@ -9,11 +9,15 @@ docker:
 	# Get the size of the container
 	docker images | grep my-rust-app
 
+	docker create --net=host --pid=host --name my-running-app-1 my-rust-app
 	# Time it!
-	time docker run -it --rm --name my-running-app my-rust-app
+	time docker start my-running-app-1
+	docker rm -f my-running-app-1
 
+	docker create --net=host --pid=host --name my-running-app-2 my-rust-app
 	# Analyze memory usage
-	../memusg.sh docker run -it --rm --name my-running-app my-rust-app
+	../memusg.sh docker start my-running-app-2
+	docker rm -f my-running-app-2
 
 # Alpine not supported here because of musl dependency issues on the Rust Crate
 

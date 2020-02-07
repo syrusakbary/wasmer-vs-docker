@@ -1,0 +1,3 @@
+[submodule "rust/cowsay"]
+	path = rust/cowsay
+	url = git@github.com:wapm-packages/cowsay.git
