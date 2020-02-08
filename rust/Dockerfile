@@ -4,6 +4,6 @@ WORKDIR /usr/src/myapp
 
 RUN cargo build --release
 
-FROM scratch
-COPY --from=build /usr/src/myapp/target/release/cowsay /cowsay
-CMD [ "/cowsay", "\"Hello World\"" ]
+# FROM alpine
+# COPY --from=build 
+CMD [ "/usr/src/myapp/target/release/cowsay", "\"Hello World\"" ]
