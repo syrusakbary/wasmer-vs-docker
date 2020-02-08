@@ -1,7 +1,7 @@
 docker:
 	# Docker container size: 1.72GB
-	# Running time: ~614ms
-	# Memory peak: 22960
+	# Running time: ~190ms
+	# Memory peak: 24676
 
 	# Prepare the container
 	docker build -t my-rust-app .
@@ -9,11 +9,15 @@ docker:
 	# Get the size of the container
 	docker images | grep my-rust-app
 
+	@ docker create --net=host --pid=host --name my-running-app-1 my-rust-app >/dev/null
 	# Time it!
-	time docker run -it --rm --name my-running-app my-rust-app
+	time docker start my-running-app-1
+	@ docker rm -f my-running-app-1 >/dev/null
 
+	@ docker create --net=host --pid=host --name my-running-app-2 my-rust-app >/dev/null
 	# Analyze memory usage
-	../memusg.sh docker run -it --rm --name my-running-app my-rust-app
+	../memusg.sh docker start my-running-app-2
+	@ docker rm -f my-running-app-2 >/dev/null
 
 # Alpine not supported here because of musl dependency issues on the Rust Crate
 
